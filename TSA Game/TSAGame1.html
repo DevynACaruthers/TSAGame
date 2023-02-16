@@ -44,8 +44,8 @@
             // Length of the snake1, grows as it it east apples.
            maxCells: 4}
            var snake2 = {
-            x: 160,
-            y: 160,
+            x: 165,
+            y: 165,
            // snake1 velocity , moves one grid length.
             dx: grid,
             dy: 0,
@@ -64,6 +64,7 @@
             return Math.floor(Math.random() * (max - min)) + min;
         }
         //game Loop
+        //START OF PROBLEM CODE
         function loop() {
             requestAnimationFrame(loop);
             //Slow game down to 50 fps insterad of trad. 60 fps
@@ -71,6 +72,7 @@
             if (++count < 4) {
                return;
             }
+
             count = 0;
             context.clearRect(0, 0, canvas.width, canvas.height);
             //Moving the S=snake1 by its velocity.
@@ -131,7 +133,9 @@
                         apple.x = getRandomInt(0, 25) * grid;
                         apple.y = getRandomInt(0, 25) * grid;
                         //Snake 2 killboxes
-                        if (cell.x === snake1.cells[i].x && cell.y === snake1.cells[i].y) {
+
+                        
+                        if (cell.x === snake2.cells[i].x && cell.y === snake2.cells[i].y) {
                         snake2.x = 160;
                         snake2.y = 160;
                         snake2.cells = [];
@@ -144,7 +148,7 @@
                     }
                 }
             });
-        }
+        }//END OF PROBLEM CODE
     }
     
         // Listener for the keyboard events to move the snake1.
