@@ -102,17 +102,17 @@
             context.fillRect(apple.x, apple.y, grid - 1, grid - 1);
             // Draw the snake1 one cell at a time.
             context.fillStyle.snake1 = 'orange';
-            snake1.cells.forEach(function (cell, index)); {
+            snake1.cells.forEach('function' (cell, index)); {
                 //Drawing one pixel smaller than the grid creates a grid effect so you can see how long.
                 context.fillRect(cell.x, cell.y, grid - 1, grid - 1);
                  // Draw the snake2 one cell at a time.
             context.fillStyle.snake2 = 'blue';}
-            snake1.cells.forEach(function (cell, index) {
+            snake2.cells.forEach(function (cell, index) {
                 //Drawing one pixel smaller than the grid creates a grid effect so you can see how long.
                 context.fillRect(cell.x, cell.y, grid - 1, grid - 1);
                 //snake1 eats apple.
                 if (cell.x === apple.x && cell.y === apple.y) {
-                    snake1.maxCells++;
+                    snake2.maxCells++;
                     // Canvas is 400 x 400 which is just 25 x 25 grids
                     apple.x = getRandomInt(0, 25) * grid;
                     apple.y = getRandomInt(0, 25) * grid;
@@ -130,11 +130,23 @@
                         snake1.dy = 0;
                         apple.x = getRandomInt(0, 25) * grid;
                         apple.y = getRandomInt(0, 25) * grid;
+                        //Snake 2 killboxes
+                        if (cell.x === snake1.cells[i].x && cell.y === snake1.cells[i].y) {
+                        snake2.x = 160;
+                        snake2.y = 160;
+                        snake2.cells = [];
+                        snake2.maxCells = 4;
+                        snake2.dx = grid;
+                        snake2.dy = 0;
+                        apple.x = getRandomInt(0, 25) * grid;
+                        apple.y = getRandomInt(0, 25) * grid;
+                        }
                     }
                 }
             });
         }
     }
+    
         // Listener for the keyboard events to move the snake1.
         document.addEventListener('keydown', function (e) {
           // prevent snake1 from backtracking on itself by checking that it
@@ -197,7 +209,7 @@
       //start the game
        requestAnimationFrame(loop);
     </script>
-    //test swertnence
+    
 </body>
 </html>
         
